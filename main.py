@@ -2,7 +2,7 @@ from fractions import Fraction
 import copy
 
 A, B, X0 = [], [], []
-D, Din, L, U, Bj, Cj, solution = [], [], [], [], [], [], []  # NOQA
+D, Din, L, U, Bj, Cj, S = [], [], [], [], [], [], []  # NOQA
 
 
 def printer_2dimensions(any_list, lenght):  # NOQA
@@ -55,8 +55,8 @@ for mat in range(n):
     X0_lines.append(int(input(f"X0 line {mat + 1} : ")))
     X0.append(X0_lines)
 order = int(input("Order : "))
-print('\nX0 : ')
-printer_1dimension(X0)
+
+
 # Making lists with 0's
 for _ in range(n):
     L_lines = []
@@ -148,11 +148,13 @@ printer_1dimension(Cj)
 
 # main loop for calculating the answer
 Xn = X0
+print('\nX0 : ')
+printer_1dimension(X0)
 for h in range(order):
-    solution = sum_mat(multiply(Bj, Xn), Cj)
-    Xn = copy.deepcopy(solution)
-    print(f"Xn({h + 1})")
-    printer_1dimension(Xn)
+    S = sum_mat(multiply(Bj, Xn), Cj)
+    Xn = copy.deepcopy(S)
+    print(f"X({h + 1})")
+    printer_1dimension(S)
 
 print("\nSolution : ")
-printer_1dimension(solution)
+printer_1dimension(S)
